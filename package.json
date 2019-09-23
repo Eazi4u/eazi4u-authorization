@@ -3,10 +3,20 @@
   "version": "1.0.0",
   "description": "",
   "main": "dist/app.js",
+  "watch": {
+    "lint": {
+      "patterns": ["src"],
+      "extensions": "js,jsx,ts"
+    }
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "prebuild": "tslint -c tslint.json -p tsconfig.json",
     "build": "tsc",
+    "prebuild:dev": "tslint -c tslint.json -p tsconfig.json",
     "build:dev": "tsc -w",
+    "watch": "npm-watch",
+    "lint": "tslint src/**/*.ts -t verbose",
     "start": "node .",
     "start:dev": "nodemon ."
   },
@@ -28,6 +38,7 @@
     "@types/mongoose": "^5.5.17",
     "@types/object-path": "^0.11.0",
     "nodemon": "^1.19.2",
+    "npm-watch": "^0.6.0",
     "tslint": "^5.20.0",
     "typescript": "^3.6.3"
   }
