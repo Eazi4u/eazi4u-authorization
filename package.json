@@ -2,7 +2,7 @@
   "name": "eazi4u-authorization",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/app.js",
+  "main": "dist/src/app.js",
   "watch": {
     "lint": {
       "patterns": ["src"],

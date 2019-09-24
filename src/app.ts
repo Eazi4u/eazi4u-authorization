@@ -9,6 +9,10 @@ import authMiddlewareRouter from "./presentation/middleware/auth-routes.middlewa
 dotenv.config();
 colors.setTheme({});
 
+// import this after dotenv was set
+import config from "./config";
+console.log("config: ".yellow, colors.yellow(config));
+
 const app = express();
 
 // Middleware
@@ -18,6 +22,6 @@ app.get("/hello", (req: any, res: any) => {
   res.send("Hello World!");
 });
 
-app.listen(3000, () => {
-  console.log(`Successfully connected to ${"auth"} lisiting on port ${3000}`.green);
+app.listen(config.node_port, () => {
+  console.log(`Successfully connected to ${config.app_name} lisiting on port ${config.node_port}`.green);
 });
