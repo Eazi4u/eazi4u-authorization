@@ -1,11 +1,9 @@
 import colors from "colors";
 import dotenv from "dotenv";
 import express from "express";
-import mongoose from "mongoose";
-import objectPath from "object-path";
 
-import mongoConnect from "./infrasturcture/db/mongodb/mongo.connect";
-import authMiddlewareRouter from "./presentation/middleware/auth-routes.middleware";
+import mongoConnect from "./infrasturcture/dbs/mongodb/mongo.connect";
+import authMiddlewareRouter from "./presentation/middlewares/auth-routes.middleware";
 
 // Set configuration
 dotenv.config();
