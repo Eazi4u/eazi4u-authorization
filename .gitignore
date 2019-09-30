@@ -65,3 +65,5 @@ config.json
 
 # dist folder
 dist/
+
+.vscode/

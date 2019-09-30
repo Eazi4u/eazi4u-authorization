@@ -1,3 +1,4 @@
+import bodyParser from "body-parser";
 import colors from "colors";
 import dotenv from "dotenv";
 import express from "express";
@@ -23,6 +24,7 @@ app.listen(config.node_port, () => {
 });
 
 // Middleware
+app.use(bodyParser.json());
 app.use(authMiddlewareRouter);
 
 // Routes

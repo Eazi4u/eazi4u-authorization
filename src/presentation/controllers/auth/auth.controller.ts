@@ -14,7 +14,11 @@ export class AuthController {
   }
 
   public register = async (req: Request, res: Response) => {
-    res.send(await this.authLogic.register());
+    try {
+      res.send(await this.authLogic.register(req.body));
+    } catch (err) {
+      res.status(500).send(err);
+    }
   }
 
   public logout = async (req: Request, res: Response) => {
