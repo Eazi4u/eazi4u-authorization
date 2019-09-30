@@ -1,21 +1,23 @@
 import { Request, Response } from "express";
 
+import { AuthLogic } from "../../../application/logic/auth/auth.logic";
+
 export class AuthController {
-  private name: string;
+  private authLogic: AuthLogic;
 
   constructor() {
-    this.name = "test";
+    this.authLogic = new AuthLogic();
   }
 
-  public login = (req: Request, res: Response) => {
-    res.send(`Login ${this.name}`);
+  public login = async (req: Request, res: Response) => {
+    res.send(await this.authLogic.login());
   }
 
-  public register = (req: Request, res: Response) => {
-    res.send("Registered");
+  public register = async (req: Request, res: Response) => {
+    res.send(await this.authLogic.register());
   }
 
-  public logout = (req: Request, res: Response) => {
-    res.send("Logout");
+  public logout = async (req: Request, res: Response) => {
+    res.send(await this.authLogic.logout());
   }
 }
