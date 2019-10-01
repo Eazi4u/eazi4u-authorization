@@ -1,3 +1,4 @@
+import jwt from "jsonwebtoken";
 import { Document, Model, model, Schema } from "mongoose";
 import { IBase } from "../../shared/entities/base.entity";
 
@@ -5,6 +6,7 @@ export interface IUser extends Document, IBase {
   username: string;
   status: string; // Login or Logout
   roles: string[];
+  generateAuthToken();
 }
 
 export const UserSchema: Schema = new Schema({
@@ -15,7 +17,7 @@ export const UserSchema: Schema = new Schema({
   },
   createdAt: Date,
   createdBy: String,
-  lastUpdateAt: Date,
+  lastUpdatedAt: Date,
   lastUpdatedBy: String,
   isActive: Boolean
 });
@@ -35,5 +37,11 @@ UserSchema.pre<IUser>("save", function(next) {
   this.lastUpdatedBy = "Mike";
   next();
 });
+
+UserSchema.methods.generateAuthToken = function() {
+  const token = jwt.sign({ _id: this._id, lastUpdatedAt: this.lastUpdatedAt, username: this.username }, "mike");
+  console.log("token", token);
+  return token;
+};
 
 export const User: Model<IUser> = model<IUser>("User", UserSchema);

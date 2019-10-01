@@ -10,7 +10,7 @@ export class AuthController {
   }
 
   public login = async (req: Request, res: Response) => {
-    res.send(await this.authLogic.login());
+    res.send(await this.authLogic.login(req.body));
   }
 
   public register = async (req: Request, res: Response) => {
