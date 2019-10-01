@@ -4,7 +4,7 @@ import { IUser, User } from "../../../domain/aggregates/user/user.root-entity";
 
 export class AuthLogic {
   public login = async (): Promise<any> => {
-    return "login logic for test";
+    return "login logic";
   }
 
   public register = async (newUser: IUser): Promise<any> => {
