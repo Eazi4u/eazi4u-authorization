@@ -6,6 +6,7 @@ export class AuthLogic {
   public login = async ({username}): Promise<any> => {
     const userFound = await User.findOne({ username: username });
     if (userFound) {
+      await userFound.save();
       const token = userFound.generateAuthToken();
       return token;
     }

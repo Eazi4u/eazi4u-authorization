@@ -39,7 +39,10 @@ UserSchema.pre<IUser>("save", function(next) {
 });
 
 UserSchema.methods.generateAuthToken = function() {
-  const token = jwt.sign({ _id: this._id, lastUpdatedAt: this.lastUpdatedAt, username: this.username }, "mike");
+  const token = jwt.sign(
+    { _id: this._id, lastUpdatedAt: this.lastUpdatedAt, username: this.username },
+    "mike",
+    { expiresIn: 120 });
   console.log("token", token);
   return token;
 };
