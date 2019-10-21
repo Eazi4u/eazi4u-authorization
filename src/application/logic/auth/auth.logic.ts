@@ -3,13 +3,17 @@ import colors from "colors";
 import { IUser, User } from "../../../domain/aggregates/user/user.root-entity";
 
 export class AuthLogic {
-  public login = async ({username}): Promise<any> => {
+  public login = async ({ username, password }): Promise<any> => {
     const userFound = await User.findOne({ username: username });
     if (userFound) {
-      const token = userFound.generateAuthToken();
-      return token;
+      const verifyPassword = await userFound.verifyPassword(password);
+      if (verifyPassword) {
+        await userFound.save();
+        const token = userFound.generateAuthToken();
+        return token;
+      }
     }
-    return "Not found";
+    return "Invalid username or password";
   }
 
   public register = async (newUser: IUser): Promise<any> => {
